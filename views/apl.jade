@@ -1,0 +1,66 @@
+extends layout
+
+block content
+    div(class='wrapper' ng-controller='paintingsCtrl as Paintings')
+        div(class="pagination-block")
+            div
+                button(type="button" class="prev btn btn-primary" ng-disabled="Paintings.curPage == 0" ng-click="Paintings.curPage=0")
+                    i(class="fa fa-fast-backward")
+                button(type="button" class="prev btn btn-primary" ng-disabled="Paintings.curPage == 0" ng-click="Paintings.curPage = Paintings.curPage-1" ng-bind="'PREVIOUS'")
+
+            p {{Paintings.curPage + 1}} / {{ Paintings.countOfPages}}
+            button(type="button" class="next btn btn-primary" ng-disabled="Paintings.curPage >= Paintings.countOfPages - 1" ng-click="Paintings.curPage = Paintings.countOfPages - 1")
+            i(class="fa fa-fast-forward")
+            button(type="button" class="next btn btn-primary" ng-disabled="Paintings.curPage >=Paintings.countOfPages - 1"
+                ng-click="Paintings.curPage = Paintings.curPage + 1" ng-bind="'NEXT'")
+        div(class="select")
+            label(for="count-filter" class="ng-binding")
+            select(name="count-filter" id="count-filter" ng-model="Paintings.count_value"
+                ng-options="count.value as count.value for count in Paintings.counts")
+
+        section(class="picture-content" ng-repeat="picture in Paintings.data | pagination: Paintings.curPage * Paintings.pageSize | countFilter: Paintings.count_value  | limitTo: Paintings.pageSize" ng-cloak)
+            form(class="myForm form-horizontal" name="form")
+                div(class="row")
+                    div(class="col-md-2")
+                        button(class='act')
+                            i(class="fa fa-floppy-o fa-2x" ng-click="Paintings.update(picture._id, picture)")
+                        button(class='act')
+                             i(class="fa fa-trash-o fa-2x" ng-click="Paintings.remove(picture._id)")
+                div(class="form-group")
+                    label(for="id" class="col-sm-2 control-label") ID
+                    div(class="col-sm-10")
+                        input(type="text" class="col-sm-10 form-control"  name="id" id="id" placeholder="" ng-model="picture._id")
+                        //p {{picture_id}}
+                div(class="form-group")
+                    label(for="parentId" class="col-sm-2 control-label") parentId
+                    div(class="col-sm-10")
+                        input(type="text" class="col-sm-10 form-control" id="parentId" placeholder="" ng-model="picture.parent_id")
+                div(class="form-group")
+                    label(for="title_RU" class="col-sm-2 control-label") title_RU
+                    div(class="col-sm-10")
+                        input(type="text" class="col-sm-10 form-control" id="title_RU" placeholder="" ng-model="picture.title_RU")
+                div(class="form-group")
+                    label(for="title_EN" class="col-sm-2 control-label") title_EN
+                    div(class="col-sm-10")
+                        input(type="text" class="col-sm-10 form-control" id="title_EN" placeholder="" ng-model="picture.title_EN")
+                div(class="form-group")
+                    label(for="description_RU" class="col-sm-2 control-label") description_RU
+                    div(class="col-sm-10")
+                        //input(type="text" class="col-sm-10 form-control" id="description_RU" placeholder="" ng-model="picture.description_RU")
+                        div( id="description_RU" placeholder="" ng-model="picture.description_RU")
+                div(class="form-group")
+                    label(for="description_EN" class="col-sm-2 control-label") description_EN
+                    div(class="col-sm-10")
+                        //input(type="text" class="col-sm-10 form-control" id="description_EN" placeholder="" ng-model="picture.description_EN")
+                        div( id="description_EN" placeholder="" ng-model="picture.description_EN")
+                div(class="form-group")
+                    label(for="createdDate" class="col-sm-2 control-label") createdDate
+                    div(class="col-sm-10")
+                        input(type="text" class="col-sm-10 form-control" id="createdDate" placeholder="" ng-model="picture.createDate")
+                div(class="form-group")
+                    label(for="lastModified" class="col-sm-2 control-label") lastModified
+                    div(class="col-sm-10")
+                        input(type="text" class="col-sm-10 form-control" id="lastModified" placeholder="" ng-model="picture.lastModified")
+                <!--<button ng-click="remove(picture._id)">Delete</button>-->
+            //<h1>Pictures</h1>
+

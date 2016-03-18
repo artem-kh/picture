@@ -1,0 +1,26 @@
+doctype html
+html(ng-controller="mainCtrl")
+    head
+        title= title
+
+        link(rel="stylesheet", href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css")
+        link(rel="stylesheet", href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css")
+        link(rel="stylesheet", href="/stylesheets/style.css")
+
+
+        script(src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js")
+        script(src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js")
+        script(src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js")
+        script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js')
+        //script(src='javascripts/core.js')
+        script(src='javascripts/main.js')
+
+        script(src='js/app.js')
+        script(src='js/mainCtrl.js')
+        script(src='js/filters.js')
+        script(src='js/services.js')
+        script(src='js/paintings/paintingsModule.js')
+
+
+    body
+        block content
